@@ -1,0 +1,22 @@
+{
+  "name": "yourleadgen",
+  "version": "1.0.0",
+  "description": "YourLeadGen – Open-source local & cloud AI lead generation & cold email automation",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "dry-run": "node main.js \"test query\" --limit 3"
+  },
+  "keywords": ["outreach", "cold-email", "lead-generation", "ai", "ollama", "openai", "open-source"],
+  "author": "Rounak Paul",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.0",
+    "chalk": "^5.3.0",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.0",
+    "nodemailer": "^6.9.0",
+    "ora": "^8.0.0"
+  }
+}
