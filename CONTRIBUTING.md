@@ -203,4 +203,4 @@ By contributing to YourLeadGen, you agree that your contributions will be licens
 
 Every contribution — no matter how small — helps make YourLeadGen better for everyone. We appreciate your time and effort!
 
-**Questions?** Open a [Discussion](../../discussions) or email [growth@xcelaratestudio.space](mailto:growth@xcelaratestudio.space).
+**Questions?** Open a [Discussion](../../discussions) or email [growth@xcelaratestudio.space](mailto:rounakpaul881@gmail.com).
