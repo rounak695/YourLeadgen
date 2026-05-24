@@ -86,7 +86,7 @@ That's it. That's the input. YourLeadGen handles the rest:
 
 <div align="center">
 
-<img src="assets/pipeline_flowchart.png" alt="YourLeadGen Pipeline Architecture" width="720" />
+<img src="DDB81F67-7EED-4B82-948C-C42FB3260C6D.png" alt="YourLeadGen Pipeline Architecture" width="720" />
 
 <br><br>
 
