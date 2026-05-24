@@ -82,7 +82,7 @@ You don't have to touch a terminal at all. There's a full web dashboard at `loca
 
 ## How the pipeline works
 
-![Architecture Diagram](assets/architecture.png)
+![Architecture Diagram](assets/system-design.png)
 
 *The full system — from a CLI query to sent emails across 6 independent modules. Each module is self-contained and can be imported separately.*
 
