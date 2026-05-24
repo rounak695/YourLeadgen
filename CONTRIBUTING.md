@@ -22,7 +22,7 @@ Every contribution matters, whether it's fixing a typo, improving docs, reportin
 
 ## 📜 Code of Conduct
 
-This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [growth@xcelaratestudio.space](mailto:growth@xcelaratestudio.space).
+This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [growth@xcelaratestudio.space](mailto:rounakpaul881@gmail.com).
 
 ---
 
