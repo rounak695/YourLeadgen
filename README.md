@@ -94,32 +94,6 @@ That's it. That's the input. YourLeadGen handles the rest:
 
 </div>
 
-<br>
-
-### System Design (Mermaid)
-
-```mermaid
-graph TB
-    A["🖥️ CLI Input<br/><i>node main.js 'query'</i>"] --> B["🔍 Lead Fetcher<br/><i>Serper API</i>"]
-    B --> C["🕷️ Web Scraper<br/><i>Cheerio + Axios</i>"]
-    C --> D{"Split"}
-    D -->|"📊 Data"| E["CSV Export<br/><i>Auto-saved to Desktop</i>"]
-    D -->|"📧 Outreach"| F["🧠 AI Engine<br/><i>Ollama / OpenAI / Groq</i>"]
-    F --> G["📨 Email Sender<br/><i>Gmail SMTP</i>"]
-    G --> H["📋 Logger<br/><i>JSON Tracking</i>"]
-
-    style A fill:#8C50FF,stroke:#8C50FF,color:#fff
-    style B fill:#1a1a2e,stroke:#5064FF,color:#fff
-    style C fill:#1a1a2e,stroke:#5064FF,color:#fff
-    style E fill:#1a1a2e,stroke:#FF6B6B,color:#fff
-    style F fill:#1a1a2e,stroke:#8C50FF,color:#fff
-    style G fill:#1a1a2e,stroke:#5064FF,color:#fff
-    style H fill:#1a1a2e,stroke:#5064FF,color:#fff
-```
-
-<br>
-
----
 
 <br>
 
