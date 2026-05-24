@@ -1,195 +1,186 @@
 # Contributing to YourLeadGen
 
-First off — **thank you** for considering contributing to YourLeadGen! 🎉
+Welcome! We are genuinely thrilled that you are here. 🎉
 
-Every contribution matters, whether it's fixing a typo, improving docs, reporting a bug, or building a whole new AI provider integration.
+YourLeadGen is built on the idea that open-source software can democratize powerful tools, and we rely on the brilliant minds in our community to make this vision a reality. Whether you are fixing a typo in the documentation, optimizing a scraping algorithm, or integrating a brand new AI provider, **your contribution matters.**
+
+This document outlines our engineering standards, processes, and guidelines to ensure your time is well spent and your code gets merged smoothly.
 
 ---
 
 ## 📋 Table of Contents
 
-- [Code of Conduct](#code-of-conduct)
-- [How Can I Contribute?](#how-can-i-contribute)
-- [Development Setup](#development-setup)
-- [Project Structure](#project-structure)
-- [Coding Standards](#coding-standards)
-- [Pull Request Process](#pull-request-process)
-- [Adding a New AI Provider](#adding-a-new-ai-provider)
-- [Reporting Bugs](#reporting-bugs)
-- [Suggesting Features](#suggesting-features)
+- [Code of Conduct](#-code-of-conduct)
+- [How Can I Contribute?](#-how-can-i-contribute)
+- [Development Setup](#-development-setup)
+- [Project Structure](#-project-structure)
+- [Coding Standards](#-coding-standards)
+- [Pull Request Process](#-pull-request-process)
+- [Adding a New AI Provider](#-adding-a-new-ai-provider)
+- [Legal](#-legal)
 
 ---
 
 ## 📜 Code of Conduct
 
-This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [growth@xcelaratestudio.space](mailto:rounakpaul881@gmail.com).
+We are committed to providing a welcoming, inclusive, and highly professional environment for everyone. This project adheres to our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold these standards. If you encounter any issues, please reach out to [rounakpaul881@gmail.com](mailto:rounakpaul881@gmail.com).
 
 ---
 
 ## 🤝 How Can I Contribute?
 
 ### 🐛 Report Bugs
-
-Found a bug? [Open an issue](../../issues/new?template=bug_report.md) with:
-- A clear, descriptive title
-- Steps to reproduce
-- Expected vs actual behavior
-- Your environment (Node.js version, OS, AI provider)
+Software is imperfect, and your bug reports help us build a more resilient system. Please [open an issue](../../issues/new?template=bug_report.md) and include:
+- A clear, descriptive title.
+- Step-by-step reproduction instructions.
+- The expected outcome vs. the actual outcome.
+- Your runtime environment (Node.js version, OS, configured AI provider).
 
 ### 💡 Suggest Features
-
-Have an idea? [Open a feature request](../../issues/new?template=feature_request.md) with:
-- A clear description of the problem you're solving
-- Your proposed solution
-- Any alternatives you've considered
+Great products evolve through community feedback. If you have an idea, [open a feature request](../../issues/new?template=feature_request.md) detailing:
+- The exact problem you are trying to solve.
+- Your proposed solution or architecture.
+- Any alternative approaches you have considered.
 
 ### 🔧 Submit Code
-
-1. Fork the repo
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Write your code
-4. Write/update tests if applicable
-5. Commit with a clear message (`git commit -m 'feat: add Mistral AI provider'`)
-6. Push to your fork (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
+Ready to write some code? Here is our standard workflow:
+1. **Fork** the repository.
+2. **Branch out** for your feature or fix (`git checkout -b feature/amazing-feature`).
+3. **Develop** your code, adhering to our coding standards.
+4. **Test** your changes thoroughly.
+5. **Commit** using Conventional Commits (`git commit -m 'feat: add Mistral AI provider'`).
+6. **Push** to your fork (`git push origin feature/amazing-feature`).
+7. **Open a Pull Request** against our `main` branch.
 
 ---
 
 ## 🛠️ Development Setup
 
+Getting the project running locally should take less than two minutes:
+
 ```bash
-# 1. Fork and clone
+# 1. Clone your fork
 git clone https://github.com/YOUR_USERNAME/yourleadgen.git
 cd yourleadgen
 
 # 2. Install dependencies
 npm install
 
-# 3. Set up environment
+# 3. Configure environment
 cp .env.example .env
-# Edit .env with your API keys
+# Open .env and add your respective API keys (Serper, AI Provider, Gmail SMTP)
 
-# 4. Test with a dry run
-node main.js "test query" --limit 3
+# 4. Verify the setup via Dry Run (generates emails, but prevents sending)
+node main.js "tech startups in london" --limit 3
 ```
 
 ### Prerequisites
-
-- **Node.js 18+** — [Download](https://nodejs.org/)
-- **Ollama** (optional) — [Download](https://ollama.ai/) — Only needed for local AI
-- At least one AI provider API key (Groq has a generous free tier)
+- **Node.js 18+** 
+- **Ollama** (Optional, but highly recommended for local, cost-free AI testing).
+- An API Key for your preferred provider if you aren't using Ollama.
 
 ---
 
 ## 📂 Project Structure
 
+We follow a modular architecture to keep the codebase clean, testable, and scalable:
+
 ```
 yourleadgen/
 ├── config/
-│   └── config.js           # Centralized config + env validation
+│   └── config.js           # Centralized configuration and environment validation
 ├── modules/
-│   ├── leadFetcher.js       # Serper API lead generation
-│   ├── scraper.js           # Web scraping engine
-│   ├── aiGenerator.js       # Multi-provider AI engine (core)
-│   ├── emailSender.js       # SMTP + rate limiter
-│   ├── emailTemplate.js     # HTML email templates
-│   └── logger.js            # JSON file logger
-├── data/                    # Runtime data (gitignored)
-├── main.js                  # CLI entry point
-├── .env.example             # Environment template
-└── package.json
+│   ├── leadFetcher.js      # Serper API integration for Google Search + Maps
+│   ├── scraper.js          # Web scraping engine (Cheerio/Axios)
+│   ├── aiGenerator.js      # Multi-provider LLM inference engine
+│   ├── emailSender.js      # SMTP transport with strict rate-limiting
+│   ├── emailTemplate.js    # HTML email formatting
+│   └── logger.js           # Disk-based JSON logger
+├── data/                   # Runtime data cache (Git-ignored)
+├── main.js                 # Standalone CLI entry point
+├── server.js               # Express server and SSE stream for the Dashboard
+├── public/                 # Vanilla JS / HTML frontend for the Web UI
+├── .env.example            # Environment template
+└── package.json            
 ```
 
 ---
 
 ## 📏 Coding Standards
 
-### General Rules
+We strive for a modern, clean, and predictable codebase.
 
-- **ES Modules** — Use `import/export`, not `require/module.exports`
-- **Async/Await** — All I/O operations must be async
-- **Error handling** — Always wrap external calls in try/catch with meaningful fallbacks
-- **No hardcoded secrets** — Everything goes through `config.js` → `.env`
+### General Engineering Rules
+- **ES Modules:** We strictly use ES Modules (`import`/`export`), not CommonJS (`require`).
+- **Asynchronous Flow:** All I/O operations must be `async`/`await`. Avoid `.then()` chaining.
+- **Defensive Programming:** Always wrap external network or disk calls in `try/catch` blocks. Provide meaningful fallbacks and clear error logs.
+- **Zero Hardcoded Secrets:** All configuration and secrets must pass through `config/config.js`.
 
 ### Naming Conventions
 
-| Element | Convention | Example |
-|---------|-----------|---------|
-| Files | camelCase | `leadFetcher.js` |
-| Functions | camelCase | `fetchLeads()` |
-| Constants | UPPER_SNAKE | `MAX_EMAILS_PER_DAY` |
-| Classes | PascalCase | `EmailProvider` |
+| Element     | Convention   | Example |
+|-------------|-------------|---------|
+| Files       | camelCase   | `leadFetcher.js` |
+| Functions   | camelCase   | `fetchLeads()` |
+| Constants   | UPPER_SNAKE | `MAX_EMAILS_PER_DAY` |
+| Classes     | PascalCase  | `EmailProvider` |
 
 ### Commit Messages
+We follow the [Conventional Commits](https://www.conventionalcommits.org/) standard. This helps us auto-generate release notes and keep our Git history readable.
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
-
-```
+```text
 feat: add Mistral AI provider support
 fix: handle timeout in scraper for slow sites
 docs: update README with Groq setup instructions
 refactor: simplify provider selection logic
-chore: update dependencies
+chore: update npm dependencies
 ```
 
 ---
 
 ## 🔌 Adding a New AI Provider
 
-Want to add support for a new AI provider? Here's the pattern:
+We want YourLeadGen to support every major LLM. Adding a new one is highly encouraged!
 
-### 1. Check if it's OpenAI-compatible
-
-Most modern AI APIs (Groq, Grok/xAI, Together, Fireworks, etc.) use the OpenAI chat completions format. If your provider does too, you just need to add it to the `PROVIDERS` registry in `aiGenerator.js`:
+### Option A: OpenAI-Compatible APIs
+Most modern APIs (Groq, Together, Fireworks, xAI) use the standard OpenAI schema. To add one, simply extend the `PROVIDERS` registry in `modules/aiGenerator.js`:
 
 ```javascript
-// In modules/aiGenerator.js → PROVIDERS object
 myProvider: {
   name: "My Provider",
   baseUrl: "https://api.myprovider.com/v1",
   defaultModel: "my-model-name",
   apiKeyEnv: "MYPROVIDER_API_KEY",
-  format: "openai",  // Uses OpenAI-compatible format
+  format: "openai", 
 },
 ```
 
-### 2. If it has a custom API format
-
-Add a new handler function:
+### Option B: Custom API Architectures
+If the provider uses a custom schema (like Claude), create a dedicated handler function:
 
 ```javascript
 async function myProviderGenerate(prompt, apiKey, model) {
-  // Call the provider's API
-  // Return: { subject: "...", email_body: "..." }
+  // 1. Authenticate and POST to the provider
+  // 2. Parse the proprietary response
+  // 3. Return the standard schema: { subject: "...", email_body: "..." }
 }
 ```
+Then, register it in the `PROVIDERS` object using `format: "custom"` and pass your `handler` function.
 
-Then register it in the `PROVIDERS` object with `format: "custom"` and a `handler` function.
-
-### 3. Update config & docs
-
-- Add the API key to `.env.example`
-- Add the provider to `config/config.js`
-- Update the README with setup instructions
-- Add the provider to the badges
+### Finalizing Your Provider
+1. Add the API key variable to `.env.example`.
+2. Map it in `config/config.js`.
+3. Update `README.md` to show users how to use it.
 
 ---
 
 ## 🔄 Pull Request Process
 
-1. **Ensure your code works** — Run a dry-run test before submitting
-2. **Update docs** — If you changed behavior, update the README
-3. **One feature per PR** — Keep PRs focused and reviewable
-4. **Describe your changes** — Use the PR template to explain what and why
-5. **Be patient** — Maintainers are human too! We'll review as soon as we can
-
-### PR Checklist
-
-- [ ] My code follows the project's coding standards
-- [ ] I have tested my changes with a dry run
-- [ ] I have updated the documentation (if applicable)
-- [ ] I have added my provider to `.env.example` (if adding a provider)
-- [ ] My commits follow the conventional commits format
+1. **Test Before Submitting:** Ensure your code works by running a full `--limit 3` dry-run.
+2. **Update Documentation:** If you changed the behavior, ensure the README and setup guides reflect it.
+3. **Keep It Focused:** One feature per Pull Request. Huge PRs are difficult to review.
+4. **Provide Context:** Use the PR template to explain *what* you changed and *why* you changed it.
+5. **Code Review:** A maintainer will review your code. We may ask for changes—please view this as a collaborative effort to merge the best possible code!
 
 ---
 
@@ -201,6 +192,6 @@ By contributing to YourLeadGen, you agree that your contributions will be licens
 
 ## 🙏 Thank You!
 
-Every contribution — no matter how small — helps make YourLeadGen better for everyone. We appreciate your time and effort!
+Every pull request, issue, and discussion helps make this project better for the entire community. We are incredibly grateful for your time, expertise, and passion.
 
-**Questions?** Open a [Discussion](../../discussions) or email [growth@xcelaratestudio.space](mailto:rounakpaul881@gmail.com).
+**Have Questions?** Open a [Discussion](../../discussions) or reach out directly at [rounakpaul881@gmail.com](mailto:rounakpaul881@gmail.com). Let's build something great.

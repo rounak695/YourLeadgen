@@ -1,9 +1,16 @@
 {
-  "name": "yourleadgen",
+  "name": "@rounak695/yourleadgen",
   "version": "1.0.0",
   "description": "YourLeadGen – Open-source local & cloud AI lead generation & cold email automation",
   "type": "module",
   "main": "main.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rounak695/YourLeadgen.git"
+  },
   "scripts": {
     "start": "node main.js",
     "dev": "node server.js",
@@ -26,7 +33,7 @@
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.0",
     "express": "^5.2.1",
-    "nodemailer": "^6.9.0",
+    "nodemailer": "^8.0.8",
     "ora": "^8.0.0"
   }
 }

@@ -152,13 +152,28 @@ Every outcome — sent, skipped, or failed — is appended to `data/logs.json` w
 
 > **Cheapest setup:** Ollama (local, free) + Serper free tier. Your only ongoing cost is zero.
 
-### Clone and install
+### Clone and run locally
 
 ```bash
 git clone https://github.com/rounak695/YourLeadgen.git
 cd YourLeadgen
 npm install
 ```
+
+### Install via GitHub Packages
+
+You can also install YourLeadgen as an npm package directly from GitHub Packages (requires a GitHub Personal Access Token):
+
+```bash
+# First, authenticate to GitHub Packages (if you haven't already)
+echo "//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN" > ~/.npmrc
+echo "@rounak695:registry=https://npm.pkg.github.com" >> ~/.npmrc
+
+# Then install the package
+npm install @rounak695/yourleadgen
+```
+
+> **Security Note**: This project is regularly audited. We recently resolved multiple `npm audit` vulnerabilities by forcing an upgrade of underlying dependencies (like `nodemailer` and `axios`) to ensure the safest possible local environment.
 
 ### Start the dashboard
 
