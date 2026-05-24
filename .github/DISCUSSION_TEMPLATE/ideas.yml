@@ -1,0 +1,34 @@
+title: '[IDEA] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 💡 Share Your Idea
+        Welcome to the YourLeadGen ideas board! We love hearing new ways to improve this AI outreach engine.
+  - type: textarea
+    id: idea-description
+    attributes:
+      label: Description of the Idea
+      description: What is the new feature or improvement you're proposing?
+      placeholder: E.g., Add support for DeepSeek AI provider...
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: How would this benefit the community or improve the workflow?
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - AI Providers (Ollama, OpenAI, Groq, etc.)
+        - Web Scraping & Data
+        - Email Delivery (SMTP, Tracking)
+        - CLI / Developer Experience
+        - Other
+    validations:
+      required: true

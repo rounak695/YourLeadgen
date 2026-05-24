@@ -1,0 +1,23 @@
+title: '[Q&A] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ❓ Ask a Question
+        Need help setting up Ollama? Having trouble with SMTP? Ask the community here!
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Please be as detailed as possible so the community can help you.
+      placeholder: I'm getting a timeout error when trying to run the scraper on...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment Info
+      description: Which AI provider and Node.js version are you using?
+      placeholder: Node v18, Groq API, Mac OS
+    validations:
+      required: false

@@ -1,0 +1,22 @@
+title: '[SHOWCASE] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🚀 Show and Tell
+        Did you build an awesome custom campaign? Hit crazy open rates? Let's celebrate your wins!
+  - type: textarea
+    id: what-you-did
+    attributes:
+      label: What did you achieve?
+      description: Tell us about the campaign or the cool tweak you made to YourLeadGen!
+      placeholder: I used the Llama 3 model to run a campaign targeting...
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: The Results
+      description: Share your open rates, replies, or any fun metrics!
+    validations:
+      required: false
