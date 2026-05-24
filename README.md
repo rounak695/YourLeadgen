@@ -101,49 +101,39 @@ Here's what each piece does:
 
 ---
 
-## CLI output
+## What happens in the background
 
-When you run a campaign from the terminal, here's what it looks like:
+When you hit **Launch Campaign** in the dashboard, here's the exact sequence of events happening on your machine behind the scenes — useful if you're contributing or debugging:
 
-```
-  ╔══════════════════════════════════════════╗
-  ║        🤖 Your AI Sales Team            ║
-  ║   ─────────────────────────────────────  ║
-  ║   Local-first Cold Email Automation      ║
-  ╚══════════════════════════════════════════╝
+**Step 1 — The browser sends a request to the local server**
 
-🔍 Query: "Interior designers in Australia"
-   Mode: DRY RUN  │  Limit: 10 leads
+The frontend calls `GET /api/run?query=...&limit=10&sendMode=false` on `server.js`. The server opens a **Server-Sent Events (SSE)** stream back to the browser so logs appear in real-time as the pipeline runs.
 
-✔ Found 10 unique leads
+**Step 2 — `leadFetcher.js` calls the Serper API**
 
-⠙ Scraping Studio Bianco Interior Design...
-  ✔ Email found: hello@studiobianco.com.au
-  ✔ Phone: +61 2 9123 4567
-  ✔ About: Luxury residential interior design based in Sydney
+It hits `https://google.serper.dev/search` and `https://google.serper.dev/maps` with your query. The raw JSON response is parsed into a deduplicated list of `{ name, website, source }` objects. These are saved to `data/leads.json` as a local cache.
 
-⠙ Scraping Coco Republic Design Studio...
-  ✔ Email: design@cocorepublic.com.au
-  ✔ About: Premium furniture & interior design since 1990
+**Step 3 — `scraper.js` visits each website**
 
-🧠 Generating AI email for Studio Bianco...
-  Subject: Your portfolio stopped me mid-scroll
+For every lead, it makes an HTTP GET request via Axios and parses the HTML with Cheerio. It scans for:
+- `mailto:` links and any `@`-format strings that look like email addresses
+- Phone numbers via regex patterns
+- Social profile links (LinkedIn, Instagram, Facebook, Twitter)
+- The `<meta name="description">` and any headings/paragraphs describing what the business does
 
-[DRY RUN] Would send to: hello@studiobianco.com.au
-[DRY RUN] Would send to: design@cocorepublic.com.au
+Leads with no email found are marked `skipped` immediately and logged. Nothing is sent to them.
 
-────────────────────────────────────────────
-  Leads Found : 10
-  Emailed     : 8
-  Skipped     : 2  (no email found)
-  Time        : 42.3s
-────────────────────────────────────────────
+**Step 4 — `aiGenerator.js` crafts the email**
 
-📊 CSV exported → ~/Desktop/scraped_leads_1716551400000.csv
-📋 Logs saved  → data/logs.json
-```
+For leads that have an email, the scraped context (business name, description, services) is passed as a prompt to your configured AI provider. The prompt instructs the model to write a short, human, non-spammy cold email under 100 words. The model returns a JSON object: `{ subject, email_body }`. This is parsed with a triple-layer fallback (direct JSON parse → regex extraction → raw text).
 
-*(Dry run by default — no emails leave your machine unless you add `--send`)*
+**Step 5 — `emailSender.js` sends (or simulates) the email**
+
+If **Live Send Mode is off**, the email is logged as `[DRY Run]` — nothing leaves your machine. If it's on, Nodemailer connects to Gmail SMTP over port 587 (TLS), sends the email, then waits a random delay between 30–120 seconds before processing the next lead. The same address is never emailed twice (checked against the existing log).
+
+**Step 6 — `logger.js` records everything**
+
+Every outcome — sent, skipped, or failed — is appended to `data/logs.json` with the business name, email, status, timestamp, and which AI-generated subject line was used. This is what powers the CRM tab in the dashboard.
 
 <br>
 
@@ -297,7 +287,7 @@ MIT — do what you want with it. See [LICENSE](LICENSE).
 
 <div align="center">
 
-Built by [Rounak Paul](https://xcelaratestudio.space)
+Built with ☕ and 🧠 by [Rounak Paul](https://xcelaratestudio.space)
 
 [![Email](https://img.shields.io/badge/rounakpaul881@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:rounakpaul881@gmail.com)
 
