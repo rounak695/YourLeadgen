@@ -241,6 +241,13 @@ YourLeadgen/
 │   ├── leads.json         ← Cached leads from last run
 │   └── logs.json          ← Full campaign history (powers the CRM)
 │
+├── .github/workflows/     ← GitHub Actions CI/CD pipelines
+│   ├── ci.yml             ← Automated testing and linting on push/PR
+│   ├── node-matrix.yml    ← Compatibility testing across Node versions
+│   ├── security-audit.yml ← Weekly dependency security scans
+│   ├── release.yml        ← Automated NPM package publishing
+│   └── github-packages.yml← Automated GitHub Packages publishing
+│
 ├── .env.example           ← Copy this to .env and fill in your keys
 ├── SETUP.md               ← Detailed setup guide
 ├── CONTRIBUTING.md
