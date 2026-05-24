@@ -4,7 +4,7 @@
 
 <br>
 
-# 🚀 YourLeadGen
+#  YourLeadGen
 
 ### *The Open-Source Multi-AI Sales Outreach Machine*
 
@@ -147,7 +147,7 @@ node main.js "Interior designers in Australia"
 # Limit to 5 leads for testing
 node main.js "SaaS startups in San Francisco" --limit 5
 
-# 🔴 LIVE MODE — actually sends emails
+#  LIVE MODE — actually sends emails
 node main.js "Yoga studios in London" --send
 
 # Clear previous logs
@@ -185,7 +185,7 @@ Visits websites and extracts robust business data (emails, phones, social links,
 
 <br>
 
-## 🛡️ Safety & Ethics
+##  Safety & Ethics
 
 YourLeadGen is built for **responsible outreach**:
 
