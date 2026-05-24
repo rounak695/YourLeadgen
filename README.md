@@ -266,8 +266,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 <br>
 
-[![Website](https://img.shields.io/badge/xcelaratestudio.space-8C50FF?style=for-the-badge&logo=firefox&logoColor=white)](https://xcelaratestudio.space)
-[![Email](https://img.shields.io/badge/growth@xcelaratestudio.space-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:growth@xcelaratestudio.space)
+[![Email](https://img.shields.io/badge/rounakpaul881@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:rounakpaul881@gmail.com)
 
 <br>
 
