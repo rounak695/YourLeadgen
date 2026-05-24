@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourLeadGen - Outreach Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar material-surface">
+            <div class="logo">
+                <svg width="36" height="36" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Bars -->
+                    <g stroke="#1e293b" stroke-width="24" stroke-linejoin="round">
+                        <rect x="140" y="240" width="50" height="100" rx="16" fill="#ff6b6b"/>
+                        <rect x="220" y="180" width="50" height="160" rx="16" fill="#fcd34d"/>
+                        <rect x="300" y="120" width="50" height="220" rx="16" fill="#4ade80"/>
+                    </g>
+
+                    <!-- Arrow -->
+                    <g stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Outline -->
+                        <path d="M 140 140 C 240 160, 300 120, 380 40" fill="none" stroke="#1e293b" stroke-width="32"/>
+                        <path d="M 300 40 L 380 40 L 380 120" fill="none" stroke="#1e293b" stroke-width="32"/>
+                        <!-- Fill -->
+                        <path d="M 140 140 C 240 160, 300 120, 380 40" fill="none" stroke="#4ade80" stroke-width="16"/>
+                        <path d="M 300 40 L 380 40 L 380 120" fill="none" stroke="#4ade80" stroke-width="16"/>
+                    </g>
+
+                    <!-- Hand -->
+                    <path d="M 140 400 L 300 400 C 380 400, 440 340, 440 280 C 440 250, 400 240, 380 270 L 340 320 L 150 320 L 140 270 C 130 240, 90 240, 90 270 L 90 350 Z" fill="#fde0c3" stroke="#1e293b" stroke-width="24" stroke-linejoin="round"/>
+
+                    <!-- Sleeve -->
+                    <polygon points="10,430 70,490 150,410 90,350" fill="#38bdf8" stroke="#1e293b" stroke-width="24" stroke-linejoin="round"/>
+                    <line x1="50" y1="390" x2="110" y2="450" stroke="#1e293b" stroke-width="24" stroke-linecap="round"/>
+                </svg>
+                YourLeadGen
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="dashboard">
+                    <span class="material-icons">dashboard</span>
+                    Dashboard
+                </button>
+                <button class="nav-item" data-tab="crm">
+                    <span class="material-icons">contacts</span>
+                    CRM / Leads
+                </button>
+                <button class="nav-item" data-tab="settings">
+                    <span class="material-icons">settings</span>
+                    Settings
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1 id="pageTitle">Dashboard</h1>
+                <div class="stats-pill material-surface" id="globalStats">Loading stats...</div>
+            </header>
+
+            <!-- TAB 1: DASHBOARD -->
+            <section id="dashboard" class="tab-content active">
+                <div class="dashboard-grid">
+                    <!-- Left Column: Controls -->
+                    <div class="material-card controls-card">
+                        <h2>Campaign Config</h2>
+                        <form id="campaignForm">
+                            <div class="form-group">
+                                <label for="query">Target Niche & Location</label>
+                                <input type="text" id="query" class="material-input" placeholder="e.g., Interior designers in Australia" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="limit">Lead Limit</label>
+                                    <input type="number" id="limit" class="material-input" value="10" min="1" max="100">
+                                </div>
+                                <div class="form-group toggle-group">
+                                    <label for="sendMode">Live Send Mode</label>
+                                    <label class="switch">
+                                        <input type="checkbox" id="sendMode">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="runBtn" class="btn-material">
+                                <span class="btn-text">Launch Campaign</span>
+                                <div class="loader hidden"></div>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Terminal Logs -->
+                    <div class="material-card terminal-card">
+                        <div class="terminal-header">
+                            <span class="material-icons">terminal</span>
+                            <div class="terminal-title">Console Output</div>
+                        </div>
+                        <div class="terminal-body" id="terminalOutput">
+                            <div class="log-line info">Waiting to start...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="material-card stat-box">
+                        <h3>Total Processed</h3>
+                        <div class="stat-value" id="statProcessed">0</div>
+                    </div>
+                    <div class="material-card stat-box success">
+                        <h3>Emails Sent</h3>
+                        <div class="stat-value success-text" id="statSent">0</div>
+                    </div>
+                    <div class="material-card stat-box danger">
+                        <h3>Failures</h3>
+                        <div class="stat-value danger-text" id="statFailed">0</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: CRM / LEADS -->
+            <section id="crm" class="tab-content">
+                <div class="material-card table-card">
+                    <div class="table-header">
+                        <h2>Lead History</h2>
+                        <button class="btn-material-outline" id="refreshCrmBtn">
+                            <span class="material-icons">refresh</span>
+                            Refresh
+                        </button>
+                    </div>
+                    <div class="table-container">
+                        <table class="material-table" id="crmTable">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Lead Name</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="crmTableBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: SETTINGS -->
+            <section id="settings" class="tab-content">
+                <div class="material-card settings-card">
+                    <h2>API Connections & Configuration</h2>
+                    <form id="settingsForm">
+                        
+                        <div class="settings-section">
+                            <h3>Lead Generation</h3>
+                            <div class="form-group">
+                                <label for="SERPER_API_KEY">Serper API Key (Google Search)</label>
+                                <input type="password" id="SERPER_API_KEY" class="material-input" placeholder="sk-...">
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>Email Sending (SMTP)</h3>
+                            <div class="form-group">
+                                <label for="SMTP_USER">Gmail Address</label>
+                                <input type="email" id="SMTP_USER" class="material-input" placeholder="youremail@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="SMTP_PASS">App Password</label>
+                                <input type="password" id="SMTP_PASS" class="material-input" placeholder="16-letter app password">
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>AI Configuration</h3>
+                            <div class="form-group">
+                                <label for="AI_PROVIDER">AI Provider</label>
+                                <select id="AI_PROVIDER" class="material-input custom-select">
+                                    <option value="ollama">Ollama (Local)</option>
+                                    <option value="openai">OpenAI (Cloud)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="OLLAMA_MODEL">Ollama Model</label>
+                                <input type="text" id="OLLAMA_MODEL" class="material-input" placeholder="e.g. llama3">
+                            </div>
+                            <div class="form-group">
+                                <label for="OPENAI_API_KEY">OpenAI API Key</label>
+                                <input type="password" id="OPENAI_API_KEY" class="material-input" placeholder="sk-...">
+                            </div>
+                        </div>
+
+                        <button type="submit" id="saveSettingsBtn" class="btn-material">Save Configuration</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

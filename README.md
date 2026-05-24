@@ -1,78 +1,20 @@
 <br><div align="center">
 
-<img src="assets/hero_banner.png" alt="YourLeadGen AI Outreach Engine" width="100%" />
+# YourLeadGen
 
-<br>
-
-#  YourLeadGen
-
-### *The Open-Source Multi-AI Sales Outreach Machine*
+### Open-Source AI Sales Outreach Engine
 
 <br>
 
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![AI Providers](https://img.shields.io/badge/AI-Ollama_|_OpenAI_|_Groq_|_Gemini_|_Claude-8C50FF?style=for-the-badge)](https://github.com/your-username/yourleadgen)
-[![License](https://img.shields.io/badge/License-MIT-8C50FF?style=for-the-badge)](LICENSE)
-[![Gmail SMTP](https://img.shields.io/badge/Gmail-SMTP-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](https://support.google.com/a/answer/176600)
-[![Serper API](https://img.shields.io/badge/Serper-API-5064FF?style=for-the-badge&logo=google&logoColor=white)](https://serper.dev/)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
 
 <br>
 
-**One command. Up to 200 leads. Personalized AI emails. Zero spam.**
+**Find leads. Scrape data. Write personalized emails with AI. Send them. All from one dashboard.**
 
-[⚡ Quick Start](#-quick-start) · [🧠 How It Works](#-how-it-works) · [🤝 Contributing](CONTRIBUTING.md) · [🛡️ Safety](#%EF%B8%8F-safety--ethics)
-
-</div>
-
-<br>
-
----
-
-<br>
-
-## 💡 The Problem
-
-> **Cold outreach is broken.**
->
-> Sales teams spend **80% of their time** finding leads and writing emails that sound like every other templated garbage in someone's inbox. The result? **2% open rates**, burned domains, and wasted hours.
-
-<br>
-
-## ⚡ The Solution
-
-**YourLeadGen** is a fully open-source AI automation engine that turns a single search query into a fully executed, *hyper-personalized* email campaign. It works securely on your local machine using **Ollama**, or connects instantly to **OpenAI, Groq, Gemini, Claude, and Grok**.
-
-```
-"Interior designers in Australia"
-```
-
-That's it. That's the input. YourLeadGen handles the rest:
-
-| Step | What Happens | Tech |
-|------|-------------|------|
-| 🔍 **Find** | Discovers leads from Google Search + Maps | Serper API |
-| 🕷️ **Scrape** | Extracts emails, phones, socials & business context | Cheerio |
-| 📊 **Export** | Auto-generates a CSV dataset, saved to your Desktop | Node.js fs |
-| 🧠 **Write** | Crafts a unique email for *each* lead | Ollama, OpenAI, Groq, etc. |
-| 📧 **Send** | Delivers via Gmail SMTP with anti-spam safeguards (up to 200 emails) | Nodemailer |
-| 📋 **Log** | Tracks every send/fail/skip with timestamps | JSON Logger |
-
-<br>
-
----
-
-<br>
-
-## 🎬 See It In Action
-
-<div align="center">
-
-<img src="assets/terminal_demo.png" alt="YourLeadGen Terminal Demo" width="680" />
-
-<br>
-
-*▲ Real terminal output from a dry-run against interior design firms*
+[Get Started](#-getting-started) · [How It Works](#-how-it-works) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -82,75 +24,85 @@ That's it. That's the input. YourLeadGen handles the rest:
 
 <br>
 
-## 🏗️ Architecture
+## What is this?
 
-<div align="center">
+YourLeadGen is a local-first lead generation and cold outreach tool. You give it a search query like `"Interior designers in Australia"`, and it does the rest:
 
-<img src="assets/DDB81F67-7EED-4B82-948C-C42FB3260C6D.png" alt="YourLeadGen Pipeline Architecture" width="720" />
+1. **Finds businesses** via Google Search (using Serper API)
+2. **Scrapes their websites** for emails, phone numbers, social links, and what they do
+3. **Generates a personalized cold email** for each lead using AI (Ollama, OpenAI, Groq, Gemini, Claude, or Grok)
+4. **Sends the emails** through Gmail SMTP with rate limiting and anti-spam protections
+5. **Logs everything** so you can track what was sent, what failed, and what was skipped
 
-<br><br>
-
-*▲ The full pipeline — from a single query to sent emails in one command*
-
-</div>
-
+It runs entirely on your machine. Your data stays local. No SaaS subscriptions, no monthly fees.
 
 <br>
 
-## ⚡ Quick Start
+---
 
-### Prerequisites
+<br>
 
-| Requirement | Why |
-|------------|-----|
-| [Node.js 18+](https://nodejs.org/) | Runtime |
-| [Serper API Key](https://serper.dev/) | Lead generation (free tier: 2,500 queries) |
-| Gmail App Password | SMTP email delivery |
-| Any AI Provider | Choose from Ollama (local), OpenAI, Groq, Gemini, Claude, or Grok |
+## Features
 
-### 1️⃣ Clone & Install
+- **Web Dashboard** — manage everything from a clean browser UI at `localhost:3000`. No terminal required.
+- **Settings Page** — paste your API keys directly in the browser. No need to edit config files.
+- **CRM View** — see all your processed leads in one table with status badges (sent, failed, skipped).
+- **Real-time Console** — watch the pipeline run live with streaming server-sent events.
+- **Multi-AI Support** — switch between Ollama (local/free), OpenAI, Groq, Gemini, Claude, or Grok.
+- **Dry Run Mode** — test the full pipeline without actually sending any emails.
+- **CSV Export** — every run auto-generates a CSV file with all scraped lead data.
+- **CLI Mode** — prefer the terminal? The original CLI still works alongside the dashboard.
+
+<br>
+
+---
+
+<br>
+
+## Getting Started
+
+### What you need
+
+| Requirement | What it's for |
+|------------|---------------|
+| [Node.js 18+](https://nodejs.org/) | Running the app |
+| [Serper API Key](https://serper.dev/) | Finding leads via Google Search (free tier gives 2,500 queries) |
+| Gmail + App Password | Sending emails via SMTP |
+| An AI provider | Generating personalized emails. Ollama is free and runs locally. |
+
+### Setup
 
 ```bash
+# 1. Clone the repo
 git clone https://github.com/your-username/yourleadgen.git
 cd yourleadgen
+
+# 2. Install dependencies
 npm install
+
+# 3. Start the dashboard
+npm run dev
 ```
 
-### 2️⃣ Configure Environment
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+Go to the **Settings** tab and enter your API keys. That's it — you're ready to run your first campaign.
+
+### CLI usage (optional)
+
+If you prefer the terminal, the CLI still works:
 
 ```bash
-cp .env.example .env
-```
-
-Edit `.env` with your credentials:
-
-```env
-# 🔑 Serper API (Lead Generation)
-SERPER_API_KEY=your_serper_api_key_here
-
-# 📧 Gmail SMTP (Email Sending)
-SMTP_USER=your.email@gmail.com
-SMTP_PASS=your_16_char_app_password
-SMTP_FROM="Rounak Paul <your.email@gmail.com>"
-
-# 🧠 Select your AI Provider (ollama, openai, groq, gemini, claude, grok)
-AI_PROVIDER=groq
-GROQ_API_KEY=gsk_your_api_key_here
-```
-
-### 3️⃣ Launch 🚀
-
-```bash
-# Dry run (no emails sent — just see what would happen)
+# Dry run — doesn't send emails
 node main.js "Interior designers in Australia"
 
-# Limit to 5 leads for testing
+# Limit to 5 leads
 node main.js "SaaS startups in San Francisco" --limit 5
 
-#  LIVE MODE — actually sends emails
+# Actually send emails
 node main.js "Yoga studios in London" --send
 
-# Clear previous logs
+# Clear old logs before running
 node main.js "Coffee shops in NYC" --clear-logs --limit 10
 ```
 
@@ -160,47 +112,38 @@ node main.js "Coffee shops in NYC" --clear-logs --limit 10
 
 <br>
 
-## 📖 Module Deep Dive
+## How It Works
 
-### 🤖 `aiGenerator.js` — The Multi-AI Writer
-Connect to your preferred AI model. Keep your data private with local **Ollama** models, or use blazing-fast cloud APIs like **Groq**. All handled through standard REST endpoints without bloated SDKs.
-
-**Supported Providers:**
-- `ollama` (Local - Llama3, Mistral)
-- `openai` (GPT-4o)
-- `groq` (Llama3-70b)
-- `gemini` (Gemini 1.5)
-- `claude` (Claude 3)
-- `grok` (Grok-2)
-
-### 📨 `emailSender.js` — The Ethical Deliverer
-Handles SMTP delivery with a built-in safety suite: rate limiting, duplicate prevention, and dry-run mode. Safely handles up to **200 emails per run**.
-
-### 🕷️ `scraper.js` — The Intelligence Agent
-Visits websites and extracts robust business data (emails, phones, social links, services) while gracefully skipping junk emails and dead domains.
-
-<br>
-
----
-
-<br>
-
-##  Safety & Ethics
-
-YourLeadGen is built for **responsible outreach**:
-
-| Safeguard | How It Works |
-|-----------|-------------|
-| 🧊 **Dry Run Default** | No emails are sent unless you explicitly pass `--send` |
-| 📊 **Batch Limits** | Configured to process a safe maximum of 200 emails at a time |
-| ⏱️ **Random Delays** | 30–120 second random wait between sends to mimic human behavior |
-| 🔁 **Deduplication** | Same email address never receives more than one message |
-| 🚫 **Junk Email Filter** | Auto-skips noreply, system, and platform-generated addresses |
-| ↩️ **Unsubscribe** | Every generated email includes an unsubscribe option |
-
-> [!IMPORTANT]
-> **YourLeadGen is a tool for genuine, personalized business outreach — not spam.**
-> Always comply with applicable email laws (CAN-SPAM, GDPR, etc.) in your jurisdiction.
+```
+Search Query (e.g. "Interior designers in Australia")
+        │
+        ▼
+┌─────────────────┐
+│  Lead Fetcher   │  → Serper API (Google Search + Maps)
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Web Scraper    │  → Cheerio (emails, phones, socials, about text)
+└────────┬────────┘
+         │
+    ┌────┴────┐
+    │         │
+    ▼         ▼
+┌────────┐ ┌──────────┐
+│CSV File│ │ AI Engine │  → Ollama / OpenAI / Groq / Gemini / Claude / Grok
+└────────┘ └─────┬────┘
+                 │
+                 ▼
+          ┌─────────────┐
+          │ Email Sender │  → Gmail SMTP (rate limited, deduplicated)
+          └──────┬──────┘
+                 │
+                 ▼
+          ┌─────────────┐
+          │   Logger    │  → JSON logs + CRM dashboard
+          └─────────────┘
+```
 
 <br>
 
@@ -208,15 +151,40 @@ YourLeadGen is built for **responsible outreach**:
 
 <br>
 
-## 🤝 Open Source & Contributing
+## Project Structure
 
-YourLeadGen is proudly open-source and community-driven. We welcome contributions of all kinds!
-
-- **Want to add a new AI provider?**
-- **Found a bug in the scraper?**
-- **Have an idea for a feature?**
-
-Check out our [Contributing Guide](CONTRIBUTING.md) to get started, and please review our [Code of Conduct](CODE_OF_CONDUCT.md) to ensure a welcoming environment for everyone.
+```
+yourleadgen/
+├── server.js              # Express server — serves the dashboard + API endpoints
+├── main.js                # CLI entry point (standalone mode)
+├── package.json
+│
+├── public/                # Frontend dashboard
+│   ├── index.html         # Dashboard layout (sidebar, tabs, forms)
+│   ├── style.css          # Material Design styles
+│   └── app.js             # Frontend logic (tab switching, SSE, API calls)
+│
+├── modules/
+│   ├── leadFetcher.js     # Serper API integration
+│   ├── scraper.js         # Website scraping (Cheerio + Axios)
+│   ├── aiGenerator.js     # Multi-provider AI email generation
+│   ├── emailSender.js     # Gmail SMTP with rate limiting
+│   ├── emailTemplate.js   # HTML email templates
+│   └── logger.js          # JSON file logging
+│
+├── config/
+│   └── config.js          # Runtime configuration (reads from .env)
+│
+├── data/
+│   ├── leads.json         # Scraped lead data
+│   └── logs.json          # Send/fail/skip history
+│
+├── .env.example           # Template for environment variables
+├── CONTRIBUTING.md
+├── CODE_OF_CONDUCT.md
+├── SETUP.md               # Detailed setup guide
+└── LICENSE                 # MIT
+```
 
 <br>
 
@@ -224,9 +192,58 @@ Check out our [Contributing Guide](CONTRIBUTING.md) to get started, and please r
 
 <br>
 
-## 📝 License
+## Supported AI Providers
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+| Provider | Type | Model | API Key Required |
+|----------|------|-------|-----------------|
+| Ollama | Local (free) | llama3, mistral, etc. | No |
+| OpenAI | Cloud | gpt-4o-mini | Yes |
+| Groq | Cloud (fast) | llama3-70b | Yes |
+| Gemini | Cloud | gemini-1.5-flash | Yes |
+| Claude | Cloud | claude-3-haiku | Yes |
+| Grok | Cloud | grok-2-latest | Yes |
+
+Set `AI_PROVIDER` in the Settings tab or `.env` file to switch providers.
+
+<br>
+
+---
+
+<br>
+
+## Safety & Ethics
+
+This tool is built for genuine business outreach, not spam. Here's what's built in:
+
+- **Dry run by default** — no emails are sent unless you explicitly turn on Live Send Mode
+- **Rate limiting** — random 30–120 second delay between each email
+- **Batch limits** — configurable max of 200 emails per run
+- **Deduplication** — the same email address never gets contacted twice
+- **Junk email filtering** — auto-skips noreply@, support@, info@, and other generic addresses
+
+> **Please comply with CAN-SPAM, GDPR, and any applicable email regulations in your region.**
+
+<br>
+
+---
+
+<br>
+
+## Contributing
+
+Contributions are welcome. Whether it's a bug fix, a new AI provider, or a UI improvement — check out the [Contributing Guide](CONTRIBUTING.md) and feel free to open a PR.
+
+Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
+
+<br>
+
+---
+
+<br>
+
+## License
+
+MIT — see [LICENSE](LICENSE).
 
 <br>
 
@@ -236,14 +253,10 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 <div align="center">
 
-### Built with 🧠 and ☕ by [Rounak Paul](https://xcelaratestudio.space) and the Open-Source Community.
-
-<br>
+Built by [Rounak Paul](https://xcelaratestudio.space)
 
 [![Email](https://img.shields.io/badge/rounakpaul881@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:rounakpaul881@gmail.com)
 
-<br>
-
-<sub>⭐ Support open-source AI tools — please drop a star! ⭐</sub>
+<sub>If this helped you, consider giving it a ⭐</sub>
 
 </div>

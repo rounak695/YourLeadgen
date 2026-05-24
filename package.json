@@ -6,9 +6,18 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
+    "dev": "node server.js",
     "dry-run": "node main.js \"test query\" --limit 3"
   },
-  "keywords": ["outreach", "cold-email", "lead-generation", "ai", "ollama", "openai", "open-source"],
+  "keywords": [
+    "outreach",
+    "cold-email",
+    "lead-generation",
+    "ai",
+    "ollama",
+    "openai",
+    "open-source"
+  ],
   "author": "Rounak Paul",
   "license": "MIT",
   "dependencies": {
@@ -16,6 +25,7 @@
     "chalk": "^5.3.0",
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.0",
+    "express": "^5.2.1",
     "nodemailer": "^6.9.0",
     "ora": "^8.0.0"
   }

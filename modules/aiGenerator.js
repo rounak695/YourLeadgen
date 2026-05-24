@@ -198,7 +198,7 @@ function parseEmailResponse(text, businessName) {
     const subject = sanitizeSubject(lines[0].replace(/^(subject|re|subj)[:\s]*/i, "").trim());
     const body = lines.slice(1).join("\n").trim();
     return {
-      subject: subject || \`Quick idea for \${businessName}\`,
+      subject: subject || `Quick idea for ${businessName}`,
       email_body: body,
     };
   }
@@ -208,7 +208,7 @@ function parseEmailResponse(text, businessName) {
 
 function getFallbackEmail(businessName) {
   return {
-    subject: \`Quick idea for \${businessName}\`,
-    email_body: \`Hi,\n\nI came across \${businessName} and was really impressed by your work. I'd love to explore how we might collaborate.\n\nWould you be open to a quick chat this week?\n\nBest regards,\nRounak\`,
+    subject: `Quick idea for ${businessName}`,
+    email_body: `Hi,\n\nI came across ${businessName} and was really impressed by your work. I'd love to explore how we might collaborate.\n\nWould you be open to a quick chat this week?\n\nBest regards,\nRounak`,
   };
 }
